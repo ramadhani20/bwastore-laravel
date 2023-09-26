@@ -8,7 +8,7 @@
     data-aos="fade-down"
   >
     <button
-      class="btn btn-secondary d-md-none mr-auto mr-2"
+      class="btn btn-secondary d-md-none mr-2"
       id="menu-toggle"
     >
       &laquo; Menu
