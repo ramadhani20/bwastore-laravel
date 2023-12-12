@@ -10,6 +10,7 @@ use App\Http\Controllers\DashboardTransactionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\CategoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +46,13 @@ Route::get('/dashboard-settings', [DashboardSettingController::class, 'index'])-
 Route::get('/dashboard-account', [DashboardSettingController::class, 'settings'])->name('setting.account');
 
 Route::prefix('admin')->namespace('Admin')->group(function () {
-    Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/', [AdminDashboardController::class, 'index'])->name('admin-dashboard');
+    Route::get('/categories', [CategoriesController::class, 'index'])->name('admin-categories');
+    Route::get('/categories-create', [CategoriesController::class, 'create'])->name('admin-categories-create');
+    Route::post('/categories-store', [CategoriesController::class, 'store'])->name('admin-categories-store');
+    Route::get('/categories-edit/{id}', [CategoriesController::class, 'edit'])->name('admin-categories-edit');
+    Route::put('/categories-update/{id}', [CategoriesController::class, 'update'])->name('admin-categories-update');
+    Route::delete('/categories-destroy/{id}', [CategoriesController::class, 'destroy'])->name('admin-categories-destroy');
 });
 
 
