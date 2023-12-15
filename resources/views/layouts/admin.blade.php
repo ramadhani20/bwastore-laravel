@@ -32,7 +32,7 @@
             <a href="#" class="list-group-item list-group-item-action">Products</a>
             <a href="{{route('admin-categories')}}" class="list-group-item list-group-item-action {{(request()->is('admin/categories*')) ? 'active' : '' }}">Categories</a>
             <a href="#" class="list-group-item list-group-item-action">Transactions</a>
-            <a href="#" class="list-group-item list-group-item-action">Users</a>
+            <a href="{{route('user.index')}}" class="list-group-item list-group-item-action">Users</a>
             <a href="/index.html" class="list-group-item list-group-item-action">Sign Out</a>
           </div>
         </div>
