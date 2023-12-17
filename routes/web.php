@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +65,14 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
     Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
     Route::delete('/users/destroy/{id}', [UserController::class, 'destroy'])->name('user.destroy');
     Route::put('/user/update/{id}', [UserController::class, 'update'])->name('user.update');
+
+    // PRODUCTS ADMIN
+    Route::get('/products', [ProductController::class, 'index'])->name('product.index');
+    Route::get('/products/create', [ProductController::class, 'create'])->name('product.create');
+    Route::post('/products/store', [ProductController::class, 'store'])->name('product.store');
+    Route::get('/products/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+    Route::put('/products/update/{id}', [ProductController::class, 'update'])->name('product.update');
+    Route::delete('products/destroy/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
 });
 
 
