@@ -13,6 +13,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProductGalleryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +74,12 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
     Route::get('/products/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
     Route::put('/products/update/{id}', [ProductController::class, 'update'])->name('product.update');
     Route::delete('products/destroy/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
+
+    // PRODUCT GALLERY ADMIN
+    Route::get('/products-gallery', [ProductGalleryController::class, 'index'])->name('product-gallery.index');
+    Route::get('/products-gallery/create', [ProductGalleryController::class, 'create'])->name('product-gallery.create');
+    Route::post('/products-gallery/store', [ProductGalleryController::class, 'store'])->name('product-gallery.store');
+    Route::delete('/products-gallery/destroy/{id}', [ProductGalleryController::class, 'destroy'])->name('product-gallery.destroy');
 });
 
 
