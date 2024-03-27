@@ -65,7 +65,7 @@
             <div class="row">
                   @forelse ($products as $product)
                   <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="{{$aos+=100}}" >
-                    <a href="{{route('detail', $product->slug)}}" class="component-products d-block">
+                    <a href="{{route('category.detail', $product->slug)}}" class="component-products d-block">
                         <div class="products-thumbnail">
                             <div class="products-images" style="
                                 @if($product->galleries)

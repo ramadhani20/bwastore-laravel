@@ -27,32 +27,35 @@ use App\Http\Controllers\Admin\ProductGalleryController;
 */
 
 
-
-Route::get('/', [HomeController::class, 'index'])->name('home.index');
-
-Route::resource('category', CategoryController::class);
-Route::resource('cart', CartController::class);
-
-Route::resource('dashboard', DashboardController::class);
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
-Route::get('/dashboard-products', [DashboardProductController::class, 'index'])->name('dashboard.index');
-Route::get('/dashboard-products/{id}', [DashboardProductController::class, 'detail'])->name('dashboard.detail');
-Route::get('/dashboard-products-create', [DashboardProductController::class, 'create'])->name('dashboard.create');
-
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-Route::get('/success', [CartController::class, 'success'])->name('cart.success');
-Route::get('details/{id}', [CategoryController::class, 'detail'])->name('category.detail');
+// Home
+Route::resource('/', HomeController::class);
 Route::get('/register/success', [HomeController::class, 'success'])->name('register.success');
 
-Route::get('/transaction', [DashboardTransactionController::class, 'index'])->name('transaction.index');
+// Dashboard
+Route::resource('dashboard', DashboardController::class);
+
+// Category
+Route::resource('category', CategoryController::class);
+Route::get('category-details/{id}', [CategoryController::class, 'detail'])->name('category.detail');
+
+// Dashboard Product
+Route::resource('dashboard-products', DashboardProductController::class);
+
+// Cart
+Route::resource('cart', CartController::class);
+Route::get('/cart/success', [CartController::class, 'success'])->name('cart.success');
+
+// Transaction
+Route::resource('transaction', DashboardTransactionController::class);
 Route::get('/transaction/{id}', [DashboardTransactionController::class, 'details'])->name('transaction.detail');
 
-Route::get('/dashboard-settings', [DashboardSettingController::class, 'index'])->name('setting.index');
+// Dashboard Settings
+Route::resource('dashboard-settings', DashboardSettingController::class);
 Route::get('/dashboard-account', [DashboardSettingController::class, 'settings'])->name('setting.account');
 
 Route::prefix('admin')->group(function () {
 
-    Route::get('/', [AdminDashboardController::class, 'index'])->name('admin-dashboard');
+    Route::resource('/', AdminDashboardController::class);
     Route::resource('categories', CategoriesController::class);
     Route::resource('user', UserController::class);
     Route::resource('products', ProductController::class);

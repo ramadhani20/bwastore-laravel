@@ -28,12 +28,12 @@
             <img src="/images/admin.png" alt="Logo" class="my-4" style="max-width: 100px">
           </div>
           <div class="list-group list-group-flush">
-            <a href="{{route('admin-dashboard')}}" class="list-group-item list-group-item-action {{ (request()->is('admin')) ? 'active' : '' }}">dashboard</a>
+            <a href="{{route('dashboard.index')}}" class="list-group-item list-group-item-action {{ (request()->is('admin')) ? 'active' : '' }}">dashboard</a>
             <a href="{{route('products.index')}}" class="list-group-item list-group-item-action {{(request()->is('admin/products*')) ? 'active' : '' }}">Products</a>
             <a href="{{route('product-gallery.index')}}" class="list-group-item list-group-item-action {{(request()->is('admin/product-gallery*')) ? 'active' : '' }}"> Galleries</a>
             <a href="{{route('categories.index')}}" class="list-group-item list-group-item-action {{(request()->is('admin/categories*')) ? 'active' : '' }}">Categories</a>
             <a href="#" class="list-group-item list-group-item-action">Transactions</a>
-            <a href="{{route('user.index')}}" class="list-group-item list-group-item-action {{(request()->is('admin/users*')) ? 'active' : '' }}">Users</a>
+            <a href="{{route('user.index')}}" class="list-group-item list-group-item-action {{(request()->is('admin/user*')) ? 'active' : '' }}">Users</a>
             <a href="/index.html" class="list-group-item list-group-item-action">Sign Out</a>
           </div>
         </div>
