@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -11,13 +13,15 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
-        return view('pages.category');
+        $categories = Category::all();
+        $products = Product::with('galleries')->paginate(1);
+        $aos = 0;
+        return view('pages.category', compact(['categories', 'products', 'aos']));
     }
 
     public function detail()
     {
-        return view('pages.detail'); 
+        return view('pages.detail');
     }
 
     /**

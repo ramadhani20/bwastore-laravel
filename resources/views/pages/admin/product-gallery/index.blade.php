@@ -50,7 +50,7 @@
                 url: '{!! url()->current() !!}',
             },
             columns: [
-                {data: 'id', name:'id'},
+                {data: 'numb', name:'numb'},
                 {data: 'product.name', name:'product.name'},
                 {data: 'photos', name:'photos'},
                 {data: 'action', name:'action', orderable: false, searchable: false, width: '15%'},

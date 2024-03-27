@@ -115,6 +115,6 @@ class UserController extends Controller
         $item = User::findOrFail($id);
         $item->delete();
 
-        return redirect()->route('admin-categories');
+        return redirect()->route('user.index');
     }
 }

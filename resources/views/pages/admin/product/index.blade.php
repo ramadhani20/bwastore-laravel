@@ -14,7 +14,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="{{route('product.create')}}" class="btn btn-primary mb-3">
+                            <a href="{{route('products.create')}}" class="btn btn-primary mb-3">
                             + Tambah Product Baru
                             </a>
                             <div class="table-responsive">

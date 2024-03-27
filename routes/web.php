@@ -26,6 +26,8 @@ use App\Http\Controllers\Admin\ProductGalleryController;
 |
 */
 
+
+
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 Route::resource('category', CategoryController::class);
@@ -48,38 +50,14 @@ Route::get('/transaction/{id}', [DashboardTransactionController::class, 'details
 Route::get('/dashboard-settings', [DashboardSettingController::class, 'index'])->name('setting.index');
 Route::get('/dashboard-account', [DashboardSettingController::class, 'settings'])->name('setting.account');
 
-Route::prefix('admin')->namespace('Admin')->group(function () {
+Route::prefix('admin')->group(function () {
+
     Route::get('/', [AdminDashboardController::class, 'index'])->name('admin-dashboard');
+    Route::resource('categories', CategoriesController::class);
+    Route::resource('user', UserController::class);
+    Route::resource('products', ProductController::class);
+    Route::resource('product-gallery', ProductGalleryController::class);
 
-    // CATEGORIES ADMIN
-    Route::get('/categories', [CategoriesController::class, 'index'])->name('admin-categories');
-    Route::get('/categories-create', [CategoriesController::class, 'create'])->name('admin-categories-create');
-    Route::post('/categories-store', [CategoriesController::class, 'store'])->name('admin-categories-store');
-    Route::get('/categories-edit/{id}', [CategoriesController::class, 'edit'])->name('admin-categories-edit');
-    Route::put('/categories-update/{id}', [CategoriesController::class, 'update'])->name('admin-categories-update');
-    Route::delete('/categories-destroy/{id}', [CategoriesController::class, 'destroy'])->name('admin-categories-destroy');
-
-    // USERS ADMIN
-    Route::get('/users', [UserController::class, 'index'])->name('user.index');
-    Route::get('/users/create', [UserController::class, 'create'])->name('user.create');
-    Route::post('users/store', [UserController::class, 'store'])->name('user.store');
-    Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
-    Route::delete('/users/destroy/{id}', [UserController::class, 'destroy'])->name('user.destroy');
-    Route::put('/user/update/{id}', [UserController::class, 'update'])->name('user.update');
-
-    // PRODUCTS ADMIN
-    Route::get('/products', [ProductController::class, 'index'])->name('product.index');
-    Route::get('/products/create', [ProductController::class, 'create'])->name('product.create');
-    Route::post('/products/store', [ProductController::class, 'store'])->name('product.store');
-    Route::get('/products/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
-    Route::put('/products/update/{id}', [ProductController::class, 'update'])->name('product.update');
-    Route::delete('products/destroy/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
-
-    // PRODUCT GALLERY ADMIN
-    Route::get('/products-gallery', [ProductGalleryController::class, 'index'])->name('product-gallery.index');
-    Route::get('/products-gallery/create', [ProductGalleryController::class, 'create'])->name('product-gallery.create');
-    Route::post('/products-gallery/store', [ProductGalleryController::class, 'store'])->name('product-gallery.store');
-    Route::delete('/products-gallery/destroy/{id}', [ProductGalleryController::class, 'destroy'])->name('product-gallery.destroy');
 });
 
 

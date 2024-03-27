@@ -19,6 +19,7 @@ class ProductGalleryController extends Controller
      */
     public function index()
     {
+        $numb = 1;
         if(request()->ajax())
         {
             $query = ProductGallery::with(['product']);
@@ -39,6 +40,9 @@ class ProductGalleryController extends Controller
             })
             ->editColumn('photos', function($item){
                 return $item->photos ? '<img src="'. Storage::url($item->photos) .'" style="max-height 80px; max-width: 80px;" />':'';
+            })
+            ->addColumn('numb', function() use (&$numb) {
+                return $numb++;
             })
             ->rawColumns(['action', 'photos'])
             ->make();
