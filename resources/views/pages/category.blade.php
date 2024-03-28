@@ -12,7 +12,7 @@
         <div class="row">
             @forelse ($categories as $category)
             <div class="col-6 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="{{$aos+=100}}">
-                <a href="{{route('category.show', $category->slug)}}" class="components-categories d-block">
+                <a href="{{route('category.detail', $category->slug)}}" class="components-categories d-block">
                     <div class="categories-images">
                         <img src="{{Storage::url($category->photo)}}" alt="" class="w-100"/>
                     </div>
@@ -58,11 +58,11 @@
               </div>
             @endforelse
         </div>
-        <div class="row">
-         <div class="col-12 mt-4">
-            {{$products->links}}
-         </div>
+      <div class="row">
+        <div class="col-12 mt-4">
+            {{$products->links()}}
         </div>
+      </div>
     </section>
 </div>
 @endsection
