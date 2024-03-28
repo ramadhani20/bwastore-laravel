@@ -28,7 +28,9 @@ use App\Http\Controllers\Admin\ProductGalleryController;
 
 
 // Home
-Route::resource('/', HomeController::class);
+Route::resource('/', HomeController::class)->names([
+    'index' => 'home.index',
+]);
 Route::get('/register/success', [HomeController::class, 'success'])->name('register.success');
 
 // Dashboard

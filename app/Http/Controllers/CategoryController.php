@@ -14,15 +14,20 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $products = Product::with('galleries')->paginate(1);
+        $products = Product::with('galleries')->paginate(2);
         $aos = 0;
         return view('pages.category', compact(['categories', 'products', 'aos']));
     }
 
-    public function detail()
+    public function detail(Request $request, $slug)
     {
-        return view('pages.detail');
+        $categories = Category::all();
+        $category = Category::where('slug', $slug)->firstOrFail();
+        $products = Product::with('galleries')->where('categories_id', $category->id)->paginate(2);
+        $aos = 0;
+        return view('pages.category', compact(['categories', 'products', 'aos']));
     }
+
 
     /**
      * Show the form for creating a new resource.
