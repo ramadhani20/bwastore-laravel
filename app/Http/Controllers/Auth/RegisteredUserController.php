@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Models\Category;
 
 class RegisteredUserController extends Controller
 {
@@ -20,7 +21,8 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $categories = Category::all();
+        return view('auth.register', compact('categories'));
     }
 
     /**
@@ -34,12 +36,18 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'store_name' => ['nullable', 'string', 'max:255'],
+            'categories_id' => ['nullable', 'integer', 'exist:categries,id'],
+            'is_store_open' => ['required'],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'store_name' => isset($request['store_name']) ? $request['store_name'] : '',
+            'categories_id' => isset($request['categories_id']) ? $request['categories_id'] : NULL,
+            'store_status' => isset($request['is_store_open']) ? 1 : 0,
         ]);
 
         event(new Registered($user));
@@ -47,5 +55,9 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
+    }
+    public function check(Request $request)
+    {
+        return User::where('email', $request->email)->count() > 0 ? 'Unavailable' :"Available" ;
     }
 }
